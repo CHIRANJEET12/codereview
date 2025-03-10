@@ -21,14 +21,19 @@ function App() {
     prism.highlightAll();
   }, []);
 
-  async function reviewCode() {
-    setLoading(true);
-    const response = await axios.post("https://codelens-teo2.onrender.com", {
+async function reviewCode() {
+  setLoading(true);
+  try {
+    const response = await axios.post("https://codelens-teo2.onrender.com/ai/get-review", {
       code,
     });
     setReview(response.data);
-    setLoading(false);
+  } catch (error) {
+    console.error("Error fetching review:", error);
   }
+  setLoading(false);
+}
+
 
   return (
     <>
