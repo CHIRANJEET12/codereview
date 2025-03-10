@@ -4,13 +4,8 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://codelens1.onrender.com", // Replace with your frontend domain
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true, // If you're using cookies or sessions
-  })
-);
+app.use(cors({ origin: "https://codelens1.onrender.com" }));
+
 
 app.use(express.json());
 app.use('/ai',aiRoutes);
