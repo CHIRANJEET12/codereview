@@ -38,7 +38,7 @@ async function reviewCode() {
     <>
       <main>
         <div className="left">
-          <h4>Switch to desktop mode in phones for better experience.<h4/>
+          <h4>Switch to desktop mode in phones for better experience.</h4>
           <div className="code">
             <Editor
               value={code}
