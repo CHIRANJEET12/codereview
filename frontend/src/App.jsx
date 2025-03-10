@@ -21,7 +21,7 @@ function App() {
 
   async function reviewCode() {
     setLoading(true);
-    const response = await axios.post("http://localhost:3000/ai/get-review", {
+    const response = await axios.post("https://codelens-teo2.onrender.com", {
       code,
     });
     setReview(response.data);
