@@ -9,9 +9,8 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [code, setCode] = useState(`
-  //Write the desired code that seems doubtful.
-  function sum() {
+  const [code, setCode] = useState(`//Write the desired code that seems doubtful.
+function sum() {
   return 1 + 1;
 }`);
   const [review, setReview] = useState("");
@@ -39,6 +38,7 @@ async function reviewCode() {
     <>
       <main>
         <div className="left">
+          <h4>Switch to desktop mode in phones for better experience.<h4/>
           <div className="code">
             <Editor
               value={code}
