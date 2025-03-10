@@ -37,7 +37,7 @@ function sum() {
     <>
       <main>
         <div className="left">
-          <h4>Switch to desktop mode in phones for better experience.</h4>
+            <h6>Switch to desktop mode in phones for better experience.</h6>
           <div className="code">
             <Editor
               value={code}
