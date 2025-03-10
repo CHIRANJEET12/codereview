@@ -12,26 +12,20 @@ function App() {
   const [code, setCode] = useState(`function sum() {
   return 1 + 1;
 }`);
-
   const [review, setReview] = useState("");
-  const [loading, setLoading] = useState(false); // Track loading state
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     prism.highlightAll();
   }, []);
 
   async function reviewCode() {
-    setLoading(true); // Show loader
-    setReview(""); // Clear previous review
-
-    try {
-      const response = await axios.post("http://localhost:3000/ai/get-review", { code });
-      setReview(response.data);
-    } catch (error) {
-      setReview("Error fetching review. Please try again.");
-    } finally {
-      setLoading(false); // Hide loader after response
-    }
+    setLoading(true);
+    const response = await axios.post("http://localhost:3000/ai/get-review", {
+      code,
+    });
+    setReview(response.data);
+    setLoading(false);
   }
 
   return (
@@ -42,7 +36,9 @@ function App() {
             <Editor
               value={code}
               onValueChange={(code) => setCode(code)}
-              highlight={(code) => prism.highlight(code, prism.languages.javascript, "javascript")}
+              highlight={(code) =>
+                prism.highlight(code, prism.languages.javascript, "javascript")
+              }
               padding={10}
               style={{
                 fontFamily: '"Fira code", "Fira Mono", monospace',
@@ -54,16 +50,23 @@ function App() {
               }}
             />
           </div>
-
-          <div onClick={!loading ? reviewCode : null} className={`review ${loading ? "disabled" : ""}`}>
-            {loading ? <span className="loader"></span> : "Review"}
+          <div onClick={reviewCode} className="review">
+            {loading ? "Generating response..." : "Review"}
           </div>
         </div>
-
         <div className="right">
-          {loading ? <div className="loading-text">Generating review...</div> : <Markdown rehypePlugins={[rehypeHighlight]}>{review}</Markdown>}
+          <Markdown rehypePlugins={[rehypeHighlight]}>{review}</Markdown>
         </div>
       </main>
+
+      {/* Social Links Section */}
+      <footer>
+        <p>Follow Me:</p>
+        <a href="https://www.linkedin.com/in/chiranjeet-dwivedy-17a143279/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/CHIRANJEET12" target="_blank">GitHub</a>
+        <a href="https://leetcode.com/u/4gVg10rUIY/" target="_blank">LeetCode</a>
+        <a href="https://instagram.com/naniantic/" target="_blank">Instagram</a>
+      </footer>
     </>
   );
 }
