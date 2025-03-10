@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Fira Code', 'Fira Mono', monospace;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Left Section - Code Editor */
+main .left {
+  flex-basis: 50%;
+  background-color: #181818;
+  border-radius: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+}
+
+/* Code Editor */
+.left .code {
+  flex-grow: 1;
+  background-color: #1e1e1e;
+  border-radius: 0.7rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.left .code pre,
+.left .code pre code {
+  background: none;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border-radius: 0.7rem;
+}
+
+/* Review Button */
+main .left .review {
+  align-self: flex-end;
+  background-color: #6272a4;
+  color: white;
+  padding: 0.6rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+main .left .review:hover {
+  background-color: #8be9fd;
+  color: #282a36;
+  box-shadow: 0 4px 10px rgba(139, 233, 253, 0.5);
+}
+
+main .left .review:active {
+  transform: scale(0.95);
+}
+
+/* Disable Button */
+.review.disabled {
+  background-color: #444;
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+/* Loader Animation */
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Right Section - Markdown Display */
+main .right {
+  flex-basis: 50%;
+  background-color: #232323;
+  border-radius: 0.7rem;
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  overflow: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  word-break: break-word;
+}
+
+/* Loading Text */
+.loading-text {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 1rem;
+  color: #bbb;
+}
+
+/* Scrollbars */
+main .right::-webkit-scrollbar {
+  width: 8px;
+}
+
+main .right::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 5px;
+}
+
+main .right::-webkit-scrollbar-track {
+  background: #232323;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  main .left,
+  main .right {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
